@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <topNav />
+      <topNav @addForm="addForm"/>
       <table class="table">
           <tr class="headings-row">
               <th class="heading" v-for="heading in logHeadings" :key="heading">{{ heading }}</th>
@@ -17,6 +17,7 @@
                 </tr>
           </div>
       </table>
+      <div class="dropdown" v-if="displayDropdown">dropdown</div>
   </div>
 </template>
 
@@ -31,11 +32,17 @@ export default {
     data: function(){
         return {
             logHeadings: ["date", "count", "go?", "do?"],
-            mockData
+            mockData,
+            displayDropdown: false,
         }
     },
     components: {
         topNav
+    },
+    methods: {
+        addForm(value){
+            this.displayDropdown = value;
+        }
     }
 }
 </script>
